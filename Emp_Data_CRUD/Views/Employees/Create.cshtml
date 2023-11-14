@@ -1,0 +1,88 @@
+﻿@model NewEmployeeVM
+@using Emp_Data_CRUD.Data.Enum
+
+@{
+    ViewData["Title"] = "Add a new Employee";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a New Employee</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Employee_Name" class="control-label"></label>
+                        <input asp-for="Employee_Name" class="form-control" />
+                        <span asp-validation-for="Employee_Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="DepartmentId" class="control-label"></label>
+                        <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.Departments"></select>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+                    
+                    <!--
+                    <div class="form-group">
+                        <label asp-for="DepartmentId">Select Department:</label>
+                        <select asp-for="DepartmentId" class="form-control">
+                            <option value="1">Administrative</option>
+                            <option value="2">HR</option>
+                            <option value="3">Sales</option>
+                            <option value="4">Management</option>
+                            <option value="5">IT</option>
+                            <option value="6">Finance</option>
+                            <option value="7">Security</option>
+                        </select>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+                    -->
+                    
+                    
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber">Phone Number</label>
+                        <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Enter phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Gender" class="control-label">Gender</label>
+                        <div>
+                            @foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+                            {
+                                <label>
+                                    <input type="radio" asp-for="Gender" value="@gender" required/> @gender
+                                </label>
+                            }
+                        </div>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="DOB" class="control-label"></label>
+                        <input asp-for="DOB" type="date" class="form-control" />
+                        <span asp-validation-for="DOB" class="text-danger"></span>
+                    </div>
+                    
+                    <br />
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-outline-success float-right" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
